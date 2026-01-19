@@ -2,332 +2,294 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Future Vortex | FTC 30326</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ================= GLOBAL ================= */
+/* ===== RESET ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-:root{
-  --bg:#0b1020;
-  --bg2:#101840;
-  --accent:#1fb6c9;
-  --text:#ffffff;
-  --muted:#aab3d6;
-}
-.light{
-  --bg:#ffffff;
-  --bg2:#f2f4f8;
-  --accent:#007c8a;
-  --text:#0b1020;
-  --muted:#555;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Inter, Arial, sans-serif;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(31,182,201,.18), transparent 40%),
-    linear-gradient(180deg,#050814,var(--bg));
-  color:var(--text);
-  transition:.3s;
-}
-a{color:var(--accent);text-decoration:none}
-section{
-  max-width:1200px;
-  margin:auto;
-  padding:80px 20px;
-  animation:fade .8s ease;
-}
-@keyframes fade{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:none}
-}
-h2{color:var(--accent);margin-bottom:20px}
-p{color:var(--muted);line-height:1.6}
-
-/* ================= HEADER ================= */
-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:var(--bg2);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 20px;
-  box-shadow:0 6px 30px rgba(0,0,0,.25);
-}
-.logo{
-  display:flex;
-  gap:12px;
-  align-items:center;
-}
-.logo img{width:44px}
-nav a{
-  margin:0 14px;
-  font-weight:600;
-}
-.controls button{
-  margin-left:6px;
-  cursor:pointer;
-  background:none;
-  border:1px solid var(--accent);
-  color:var(--accent);
-  border-radius:8px;
-  padding:4px 8px;
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #0b1d3a, #050914);
+  color: #e8f1ff;
 }
 
-/* ================= HERO ================= */
-#hero{
-  text-align:center;
-  padding:120px 20px;
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(5,9,20,0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  z-index: 1000;
 }
-#hero h1{
-  font-size:48px;
-  margin-bottom:10px;
+nav img { height: 38px; }
+nav a {
+  color: #7fdcff;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
 }
-#hero span{color:var(--accent)}
-#hero p{max-width:700px;margin:auto}
+nav a:hover { color: #ffffff; }
 
-/* ================= TEAM ================= */
-.team{
-  display:flex;
-  gap:18px;
-  overflow-x:auto;
-  padding-bottom:10px;
+/* ===== SECTIONS ===== */
+section {
+  padding: 120px 8% 100px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s ease;
 }
-.team::-webkit-scrollbar{display:none}
-.member{
-  min-width:190px;
-  background:var(--bg2);
-  border-radius:20px;
-  padding:12px;
-  text-align:center;
-  cursor:pointer;
-  transition:.3s;
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
-.member:hover{transform:translateY(-8px)}
-.member img{
-  width:100%;
-  border-radius:14px;
+h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+  color: #7fdcff;
 }
-.member h4{margin:8px 0 2px;color:var(--accent)}
-.member p{font-size:14px}
-
-/* ================= TIMELINE ================= */
-.timeline{
-  border-left:2px solid var(--accent);
-  padding-left:20px;
+h2 {
+  font-size: 30px;
+  margin-bottom: 16px;
+  color: #9fe7ff;
 }
-.event{
-  margin-bottom:30px;
-}
-.event h4{margin:0;color:var(--accent)}
-.event small{color:var(--muted)}
-
-/* ================= AWARDS ================= */
-.awards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:20px;
-}
-.award{
-  background:var(--bg2);
-  padding:20px;
-  border-radius:18px;
+p {
+  line-height: 1.7;
+  font-size: 17px;
+  max-width: 900px;
 }
 
-/* ================= MODAL ================= */
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.85);
-  display:none;
-  justify-content:center;
-  align-items:center;
+/* ===== TEAM ===== */
+.team {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 10px;
 }
-.modal-box{
-  background:var(--bg2);
-  padding:22px;
-  border-radius:22px;
-  width:90%;
-  max-width:420px;
+.card {
+  min-width: 220px;
+  background: linear-gradient(180deg, #0f244d, #09162e);
+  border-radius: 18px;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.4s;
 }
-.chat{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+.card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 0 25px rgba(127,220,255,0.25);
 }
-.bubble{
-  padding:10px 14px;
-  border-radius:16px;
-  max-width:80%;
+.card img {
+  width: 100%;
+  border-radius: 14px;
+  margin-bottom: 10px;
 }
-.q{background:#333;align-self:flex-start}
-.a{background:var(--accent);color:#000;align-self:flex-end}
-.close{
-  float:right;
-  font-size:22px;
-  cursor:pointer;
+.role {
+  color: #7fdcff;
+  font-size: 14px;
 }
 
-/* ================= FOOTER ================= */
-footer{
-  background:var(--bg2);
-  padding:30px;
-  text-align:center;
-  color:var(--muted);
+/* ===== MODAL ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+.modal-box {
+  background: #0b1d3a;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  animation: pop 0.4s ease;
+}
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.dialog p {
+  opacity: 0;
+  animation: fadeIn 0.6s forwards;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+.close {
+  text-align: right;
+  cursor: pointer;
+  color: #7fdcff;
+}
+
+/* ===== EVENTS ===== */
+.event-btn {
+  background: none;
+  border: 1px solid #7fdcff;
+  color: #7fdcff;
+  padding: 10px 18px;
+  border-radius: 14px;
+  margin: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.event-btn:hover {
+  background: #7fdcff;
+  color: #000;
+}
+.event-info {
+  margin-top: 20px;
+  max-width: 900px;
+  animation: fadeIn 0.8s ease;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 40px;
+  color: #6fa3c7;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">
-    <img src="img/logo.png">
-    <div>
-      <b>Future Vortex</b><br>
-      <small>FTC Team 30326</small>
-    </div>
-  </div>
-
-  <nav>
+<nav>
+  <img src="img/logo.png">
+  <div>
     <a href="#about">About</a>
     <a href="#robot">Robot</a>
     <a href="#team">Team</a>
-    <a href="#journey">Journey</a>
-    <a href="#awards">Awards</a>
+    <a href="#events">Competitions</a>
     <a href="#contacts">Contacts</a>
-  </nav>
-
-  <div class="controls">
-    <button onclick="toggleTheme()">🌙/☀️</button>
-    <button onclick="setLang('en')">EN</button>
-    <button onclick="setLang('ru')">RU</button>
-    <button onclick="setLang('kz')">KZ</button>
   </div>
-</header>
-
-<section id="hero">
-  <h1>Future <span>Vortex</span></h1>
-  <p>FTC Team 30326 — engineering growth, leadership and impact through robotics</p>
-</section>
+</nav>
 
 <section id="about">
-  <h2 data-i="about_t">About the Team</h2>
-  <p data-i="about_p">
-    Future Vortex is an FTC team from Kazakhstan.  
-    We are 8 students who grow through engineering challenges,
-    teamwork, iteration and leadership.
-  </p>
+<h1>Future Vortex — FTC Team 30326</h1>
+<p>
+Future Vortex is a competitive FIRST Tech Challenge team focused on engineering excellence,
+iterative design, and strategic gameplay. Throughout the season, our team evolved not only
+technically but mentally — learning how to recover from failures, improve under pressure,
+and transform challenges into growth.
+</p>
 </section>
 
 <section id="robot">
-  <h2 data-i="robot_t">Robot — IMPULSE</h2>
-  <p data-i="robot_p">
-    IMPULSE is the result of multiple design iterations.
-    Lightweight CAD, stable electronics and strategic driving
-    allowed us to consistently improve throughout the season.
-  </p>
+<h2>Robot Philosophy</h2>
+<p>
+Our robot was designed with adaptability and reliability as core principles.
+During the season, we iterated multiple mechanisms, reduced weight, optimized control logic,
+and improved match consistency. Failures during competitions became learning points that
+shaped our final design.
+</p>
+<img src="img/robot_side.jpg" style="margin-top:20px;max-width:400px;border-radius:16px;">
 </section>
 
 <section id="team">
-  <h2 data-i="team_t">Our Team</h2>
-  <div class="team">
-    <div class="member" onclick="openModal('I lead the team and manage strategy.')">
-      <img src="img/sayan.png"><h4>Sayan</h4><p>Captain</p>
-    </div>
-    <div class="member" onclick="openModal('I design the robot using CAD.')">
-      <img src="img/alikh.png"><h4>Alikh</h4><p>Lead CAD</p>
-    </div>
-    <div class="member" onclick="openModal('I drive and build mechanisms.')">
-      <img src="img/nurali.png"><h4>Nurali</h4><p>Engineer / Driver</p>
-    </div>
-    <div class="member" onclick="openModal('I support during matches.')">
-      <img src="img/aldiyar.png"><h4>Aldiyar</h4><p>Human Player</p>
-    </div>
-    <div class="member" onclick="openModal('I work on outreach and design.')">
-      <img src="img/saida.jpeg"><h4>Saida</h4><p>Outreach</p>
-    </div>
-    <div class="member" onclick="openModal('I work on electronics.')">
-      <img src="img/muhammedali.png"><h4>Muhammedali</h4><p>Electronics</p>
-    </div>
-    <div class="member" onclick="openModal('I help with CAD and assembly.')">
-      <img src="img/nurbek.png"><h4>Nurbek</h4><p>Mechanical</p>
-    </div>
-    <div class="member" onclick="openModal('I work on documentation.')">
-      <img src="img/rabiya.png"><h4>Rabiya</h4><p>Engineer</p>
-    </div>
-  </div>
+<h2>Our Team</h2>
+<div class="team">
+<div class="card" onclick="openDialog('Sayan','Captain','I lead the team, coordinate strategy, and ensure communication during competitions.')">
+<img src="img/sayan.png"><b>Sayan</b><div class="role">Captain</div>
+</div>
+<div class="card" onclick="openDialog('Alikh','Lead CAD','Designed mechanisms, optimized structure, and supported iterations.')">
+<img src="img/alikh.png"><b>Alikh</b><div class="role">Lead CAD</div>
+</div>
+<div class="card" onclick="openDialog('Nurali','Engineer / Driver','Worked on mechanisms and drove the robot during matches.')">
+<img src="img/nurali.png"><b>Nurali</b><div class="role">Engineer / Driver</div>
+</div>
+<div class="card" onclick="openDialog('Aldiyar','Human Player','Responsible for game elements and alliance coordination.')">
+<img src="img/aldiyar.png"><b>Aldiyar</b><div class="role">Human Player</div>
+</div>
+<div class="card" onclick="openDialog('Saida','Outreach','Organized workshops, outreach programs, and presentations.')">
+<img src="img/saida.jpeg"><b>Saida</b><div class="role">Outreach</div>
+</div>
+<div class="card" onclick="openDialog('Muhammedali','Electronics','Wiring, reliability, and hardware diagnostics.')">
+<img src="img/muhammedali.png"><b>Muhammedali</b><div class="role">Electronics</div>
+</div>
+</div>
 </section>
 
-<section id="journey">
-  <h2>Season Journey</h2>
-  <div class="timeline">
-    <div class="event">
-      <h4>Early Regionals</h4>
-      <small>Instability, learning from failures</small>
-    </div>
-    <div class="event">
-      <h4>Mid Season</h4>
-      <small>Control, strategy and CAD improvements</small>
-    </div>
-    <div class="event">
-      <h4>Peak Performance</h4>
-      <small>Alliance captaincy and awards</small>
-    </div>
-  </div>
-</section>
+<section id="events">
+<h2>Competitions & Growth</h2>
 
-<section id="awards">
-  <h2>Awards & Achievements</h2>
-  <div class="awards">
-    <div class="award">🧠 Think Award Winner</div>
-    <div class="award">🚀 Innovate Award Winner</div>
-    <div class="award">🥈 Innovate Award — 2nd Place</div>
-    <div class="award">⚙️ Control Award Winner</div>
-    <div class="award">👑 Winning Alliance Captain</div>
-    <div class="award">🏁 Finalist Alliance Captain</div>
-  </div>
+<button class="event-btn" onclick="showEvent('bishkek')">Bishkek Regional</button>
+<button class="event-btn" onclick="showEvent('astana')">Astana Regional</button>
+<button class="event-btn" onclick="showEvent('burabay')">Burabay Regional</button>
+
+<div id="eventInfo" class="event-info"></div>
 </section>
 
 <section id="contacts">
-  <h2>Contacts</h2>
-  <p>Instagram: <a href="https://www.instagram.com/future._vortexftckz/" target="_blank">future._vortexftckz</a></p>
-  <p>YouTube: <a href="https://www.youtube.com/@fvftskz" target="_blank">@fvftskz</a></p>
+<h2>Contacts</h2>
+<p>
+📺 YouTube: @fvftskz <br>
+📸 Instagram: future._vortexftckz <br>
+🌍 FTC Team 30326 — Kazakhstan
+</p>
 </section>
 
 <footer>
-  © Future Vortex — FTC Team 30326
+Future Vortex © FTC 30326
 </footer>
 
 <div class="modal" id="modal">
-  <div class="modal-box">
-    <span class="close" onclick="closeModal()">×</span>
-    <div class="chat">
-      <div class="bubble q">What do you do in the team?</div>
-      <div class="bubble a" id="modalText"></div>
-    </div>
-  </div>
+<div class="modal-box">
+<div class="close" onclick="closeDialog()">✕</div>
+<div class="dialog" id="dialog"></div>
+</div>
 </div>
 
 <script>
-function toggleTheme(){document.body.classList.toggle("light")}
-function openModal(text){
-  modalText.innerText=text;
-  modal.style.display="flex";
-}
-function closeModal(){modal.style.display="none"}
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
+});
+document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-const tr={
-  en:{about_t:"About the Team",about_p:"Future Vortex is an FTC team from Kazakhstan.",robot_t:"Robot — IMPULSE",robot_p:"IMPULSE is our competition robot.",team_t:"Our Team"},
-  ru:{about_t:"О команде",about_p:"Future Vortex — FTC команда из Казахстана.",robot_t:"Робот — IMPULSE",robot_p:"IMPULSE — наш соревновательный робот.",team_t:"Наша команда"},
-  kz:{about_t:"Команда туралы",about_p:"Future Vortex — Қазақстандағы FTC командасы.",robot_t:"Робот — IMPULSE",robot_p:"IMPULSE — жарыс роботы.",team_t:"Біздің команда"}
+function openDialog(name, role, text) {
+  const d = document.getElementById('dialog');
+  d.innerHTML = `
+    <p style="animation-delay:0s"><b>Q:</b> What do you do in the team?</p>
+    <p style="animation-delay:0.6s"><b>${name}:</b> ${text}</p>
+  `;
+  document.getElementById('modal').style.display='flex';
 }
-function setLang(l){
-  document.querySelectorAll("[data-i]").forEach(e=>e.innerText=tr[l][e.dataset.i])
+function closeDialog(){ document.getElementById('modal').style.display='none'; }
+
+function showEvent(e){
+const box=document.getElementById('eventInfo');
+if(e==='bishkek'){
+box.innerHTML=`
+<h3>Bishkek FIRST Regional</h3>
+<p><b>Awards:</b> Winning Alliance Captain</p>
+<p><b>Strengths:</b> Stable autonomous, strong alliance synergy.</p>
+<p><b>Challenges:</b> Mechanical wear during playoffs.</p>
+<p><b>Growth:</b> Learned endurance, pressure handling, alliance leadership.</p>`;
+}
+if(e==='astana'){
+box.innerHTML=`
+<h3>Astana FIRST Regional</h3>
+<p><b>Awards:</b> Innovate Award Winner</p>
+<p><b>Strengths:</b> Engineering design, mechanism originality.</p>
+<p><b>Challenges:</b> Inconsistent tele-op performance.</p>
+<p><b>Growth:</b> Improved software stability.</p>`;
+}
+if(e==='burabay'){
+box.innerHTML=`
+<h3>Burabay FIRST Regional</h3>
+<p><b>Awards:</b> Innovate Award Winner</p>
+<p><b>Strengths:</b> Fast cycles, good driving.</p>
+<p><b>Challenges:</b> Defense resistance.</p>
+<p><b>Growth:</b> Strategic driving improvements.</p>`;
+}
 }
 </script>
 
