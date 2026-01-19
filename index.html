@@ -1,163 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Future Vortex | FTC 30326</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future Vortex | FTC 30326</title>
 
-  <style>
-    :root {
-      --bg: #0b1020;
-      --bg2: #101840;
-      --accent: #1fb6c9;
-      --text: #ffffff;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(31,182,201,.15), transparent 40%),
-        linear-gradient(180deg, #050814, var(--bg));
-      color: var(--text);
-    }
-
-    /* HEADER */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 20px;
-      background: var(--bg2);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo img {
-      width: 40px;
-    }
-
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: var(--accent);
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 60px 20px;
-    }
-
-    h2 {
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
-
-    /* TEAM */
-    .team {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-    }
-
-    .team::-webkit-scrollbar {
-      display: none;
-    }
-
-    .member {
-      min-width: 180px;
-      background: var(--bg2);
-      border-radius: 16px;
-      padding: 12px;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .member img {
-      width: 100%;
-      border-radius: 12px;
-    }
-
-    .member h4 {
-      margin: 8px 0 2px;
-      color: var(--accent);
-    }
-
-    /* MODAL */
-    .modal {
-      position: fixed;
-      inset: 0;
-      display: none;
-      background: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background: var(--bg2);
-      padding: 20px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 400px;
-    }
-
-    .chat {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .bubble {
-      padding: 10px 14px;
-      border-radius: 16px;
-      max-width: 80%;
-    }
-
-    .question {
-      background: #333;
-      align-self: flex-start;
-    }
-
-    .answer {
-      background: var(--accent);
-      color: #000;
-      align-self: flex-end;
-    }
-
-    .close {
-      float: right;
-      font-size: 22px;
-      cursor: pointer;
-    }
-
-    footer {
-      background: var(--bg2);
-      padding: 20px;
-      text-align: center;
-    }
-  </style>
+<style>
+:root{
+  --bg:#0b1020;
+  --bg2:#101840;
+  --accent:#1fb6c9;
+  --text:#ffffff;
+}
+.light{
+  --bg:#ffffff;
+  --bg2:#f2f4f8;
+  --accent:#007c8a;
+  --text:#0b1020;
+}
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(31,182,201,.15), transparent 40%),
+    linear-gradient(180deg,#050814,var(--bg));
+  color:var(--text);
+  transition:.3s;
+}
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:var(--bg2);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 20px;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.logo img{width:40px}
+nav a{
+  margin-left:18px;
+  text-decoration:none;
+  color:var(--accent);
+  font-weight:bold;
+}
+nav a:hover{text-decoration:underline}
+.controls button{
+  margin-left:6px;
+  cursor:pointer;
+}
+section{
+  max-width:1100px;
+  margin:auto;
+  padding:70px 20px;
+  animation:fade .8s;
+}
+@keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1}}
+h2{color:var(--accent)}
+/* TEAM */
+.team{
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+}
+.team::-webkit-scrollbar{display:none}
+.member{
+  min-width:180px;
+  background:var(--bg2);
+  border-radius:18px;
+  padding:12px;
+  text-align:center;
+  cursor:pointer;
+  transition:.3s;
+}
+.member:hover{transform:translateY(-6px)}
+.member img{
+  width:100%;
+  border-radius:12px;
+}
+.member h4{margin:8px 0 2px;color:var(--accent)}
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+.modal-box{
+  background:var(--bg2);
+  border-radius:20px;
+  padding:20px;
+  max-width:420px;
+  width:90%;
+}
+.chat{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.bubble{
+  padding:10px 14px;
+  border-radius:16px;
+  max-width:80%;
+}
+.q{background:#333;align-self:flex-start}
+.a{background:var(--accent);color:#000;align-self:flex-end}
+.close{float:right;cursor:pointer;font-size:22px}
+/* FOOTER */
+footer{
+  background:var(--bg2);
+  text-align:center;
+  padding:20px;
+}
+</style>
 </head>
+
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="logo">
     <img src="img/logo.png">
     <div>
-      <strong>Future Vortex</strong><br>
+      <b>Future Vortex</b><br>
       <small>FTC Team 30326</small>
     </div>
   </div>
@@ -166,163 +137,119 @@
     <a href="#about">About</a>
     <a href="#robot">Robot</a>
     <a href="#team">Team</a>
+    <a href="#awards">Awards</a>
     <a href="#contacts">Contacts</a>
   </nav>
+
+  <div class="controls">
+    <button onclick="toggleTheme()">🌙/☀️</button>
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('ru')">RU</button>
+    <button onclick="setLang('kz')">KZ</button>
+  </div>
 </header>
 
-<!-- ABOUT -->
 <section id="about">
-  <h2>About the Team</h2>
-  <p>
-    Future Vortex is an FTC team from Almaty, Kazakhstan.
-    We are a team of 8 students united by engineering, innovation,
-    and teamwork. Our goal is to create competitive robots and
-    grow as future engineers and leaders.
+  <h2 data-i="about_t">About the Team</h2>
+  <p data-i="about_p">
+    Future Vortex is an FTC team from Almaty, Kazakhstan.  
+    We are 8 students united by engineering, innovation and teamwork.
+    Our mission is to create competitive robots and inspire others.
   </p>
 </section>
 
-<!-- ROBOT -->
 <section id="robot">
-  <h2>Robot — IMPULSE</h2>
-  <p>
-    IMPULSE is our competition robot designed for speed, precision,
-    and reliability. It features a compact intake, accurate shooter,
-    and a lightweight CAD-optimized structure.
+  <h2 data-i="robot_t">Robot — IMPULSE</h2>
+  <p data-i="robot_p">
+    IMPULSE is our competition robot designed for speed, precision and reliability.
+    It features a lightweight CAD structure, accurate shooter and stable drivetrain.
   </p>
 </section>
 
-<!-- TEAM -->
 <section id="team">
-  <h2>Our Team</h2>
-
+  <h2 data-i="team_t">Our Team</h2>
   <div class="team">
 
-    <div class="member" onclick="openModal(
-      'img/sayan.png',
-      'Captain',
-      'I manage the team and coordinate all activities.'
-    )">
-      <img src="img/sayan.png">
-      <h4>Sayan</h4>
-      <p>Captain</p>
+    <div class="member" onclick="openModal('img/sayan.png','I am the captain and manage the team.')">
+      <img src="img/sayan.png"><h4>Sayan</h4><p>Captain</p>
     </div>
 
-    <div class="member" onclick="openModal(
-      'img/nurali.png',
-      'Engineer / Driver',
-      'I build mechanisms and drive the robot in matches.'
-    )">
-      <img src="img/nurali.png">
-      <h4>Nurali</h4>
-      <p>Engineer / Driver</p>
+    <div class="member" onclick="openModal('img/nurali.png','I build mechanisms and drive the robot.')">
+      <img src="img/nurali.png"><h4>Nurali</h4><p>Engineer / Driver</p>
     </div>
 
-    <div class="member" onclick="openModal(
-      'img/alikh.png',
-      'Lead CAD',
-      'I design the robot structure and mechanisms.'
-    )">
-      <img src="img/alikh.png">
-      <h4>Alikh</h4>
-      <p>Lead CAD</p>
+    <div class="member" onclick="openModal('img/alikh.png','I design the robot using CAD.')">
+      <img src="img/alikh.png"><h4>Alikh</h4><p>Lead CAD</p>
     </div>
 
-    <div class="member" onclick="openModal(
-      'img/aldiyar.png',
-      'Human Player',
-      'I support the team during matches.'
-    )">
-      <img src="img/aldiyar.png">
-      <h4>Aldiyar</h4>
-      <p>Human Player</p>
+    <div class="member" onclick="openModal('img/aldiyar.png','I support the team during matches.')">
+      <img src="img/aldiyar.png"><h4>Aldiyar</h4><p>Human Player</p>
     </div>
 
-    <div class="member" onclick="openModal(
-      'img/saida.jpeg',
-      'Outreach & Design',
-      'I work on presentations and team branding.'
-    )">
-      <img src="img/saida.jpeg">
-      <h4>Saida</h4>
-      <p>Outreach / Design</p>
+    <div class="member" onclick="openModal('img/saida.jpeg','I work on outreach and design.')">
+      <img src="img/saida.jpeg"><h4>Saida</h4><p>Outreach</p>
     </div>
 
-    <div class="member" onclick="openModal(
-      'img/muhammedali.png',
-      'Electronics',
-      'I work on wiring and sensors.'
-    )">
-      <img src="img/muhammedali.png">
-      <h4>Muhammedali</h4>
-      <p>Electronics</p>
+    <div class="member" onclick="openModal('img/muhammedali.png','I work with electronics.')">
+      <img src="img/muhammedali.png"><h4>Muhammedali</h4><p>Electronics</p>
     </div>
 
-    <div class="member" onclick="openModal(
-      'img/nurbek.png',
-      'CAD / Mechanical',
-      'I help with CAD and assembly.'
-    )">
-      <img src="img/nurbek.png">
-      <h4>Nurbek</h4>
-      <p>CAD / Mechanical</p>
+    <div class="member" onclick="openModal('img/nurbek.png','I help with CAD and assembly.')">
+      <img src="img/nurbek.png"><h4>Nurbek</h4><p>CAD</p>
     </div>
 
-    <div class="member" onclick="openModal(
-      'img/rabiya.png',
-      'Engineer',
-      'I work on documentation and teamwork.'
-    )">
-      <img src="img/rabiya.png">
-      <h4>Rabiya</h4>
-      <p>Engineer</p>
+    <div class="member" onclick="openModal('img/rabiya.png','I work on documentation.')">
+      <img src="img/rabiya.png"><h4>Rabiya</h4><p>Engineer</p>
     </div>
 
   </div>
 </section>
 
-<!-- CONTACTS -->
+<section id="awards">
+  <h2>Awards & Competitions</h2>
+  <p>
+    • Regional FTC Competitions  
+    • Alliance Captain  
+    • Engineering & Inspire focused team
+  </p>
+</section>
+
 <section id="contacts">
   <h2>Contacts</h2>
-  <p>
-    📸 Instagram:
-    <a href="https://www.instagram.com/future._vortexftckz/" target="_blank">
-      future._vortexftckz
-    </a>
-  </p>
-  <p>
-    ▶️ YouTube:
-    <a href="https://www.youtube.com/@fvftskz" target="_blank">
-      @fvftskz
-    </a>
-  </p>
+  <p>📸 Instagram: <a href="https://www.instagram.com/future._vortexftckz/" target="_blank">future._vortexftckz</a></p>
+  <p>▶️ YouTube: <a href="https://www.youtube.com/@fvftskz" target="_blank">@fvftskz</a></p>
 </section>
 
 <footer>
   © Future Vortex — FTC 30326
 </footer>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
-  <div class="modal-content">
+  <div class="modal-box">
     <span class="close" onclick="closeModal()">×</span>
-    <img id="mImg" style="width:100%;border-radius:12px;">
     <div class="chat">
-      <div class="bubble question">What do you do in the team?</div>
-      <div class="bubble answer" id="mText"></div>
+      <div class="bubble q">What do you do in the team?</div>
+      <div class="bubble a" id="modalText"></div>
     </div>
   </div>
 </div>
 
 <script>
-  function openModal(img, role, text) {
-    document.getElementById("mImg").src = img;
-    document.getElementById("mText").innerText = text;
-    document.getElementById("modal").style.display = "flex";
-  }
+function toggleTheme(){document.body.classList.toggle("light")}
+function openModal(text){
+  document.getElementById("modalText").innerText=text
+  document.getElementById("modal").style.display="flex"
+}
+function closeModal(){document.getElementById("modal").style.display="none"}
 
-  function closeModal() {
-    document.getElementById("modal").style.display = "none";
-  }
+const t={
+ en:{about_t:"About the Team",about_p:"Future Vortex is an FTC team from Almaty, Kazakhstan...",robot_t:"Robot — IMPULSE",robot_p:"IMPULSE is our competition robot...",team_t:"Our Team"},
+ ru:{about_t:"О команде",about_p:"Future Vortex — FTC команда из Алматы...",robot_t:"Робот — IMPULSE",robot_p:"IMPULSE — наш соревновательный робот...",team_t:"Наша команда"},
+ kz:{about_t:"Команда туралы",about_p:"Future Vortex — Алматы қаласындағы FTC командасы...",robot_t:"Робот — IMPULSE",robot_p:"IMPULSE — жарыс роботы...",team_t:"Біздің команда"}
+}
+function setLang(l){
+ document.querySelectorAll("[data-i]").forEach(e=>e.innerText=t[l][e.dataset.i])
+}
 </script>
 
 </body>
