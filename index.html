@@ -1,1 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Future Vortex | FTC 30326</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<header>
+  <div class="logo">
+    <img src="img/logo.png">
+    <div>
+      <h1>Future Vortex</h1>
+      <span>FTC Team 30326</span>
+    </div>
+  </div>
+
+  <button onclick="toggleTheme()">🌙 / ☀️</button>
+</header>
+
+<section id="team">
+  <h2>Our Team</h2>
+
+  <div class="team-carousel">
+    <button class="arrow left" onclick="scrollTeam(-1)">‹</button>
+
+    <div class="team-track" id="teamTrack">
+
+      <!-- 1 -->
+      <div class="member" onclick="openModal(
+        'img/sayan.jpg',
+        'Sayan',
+        'I am the team captain. I manage the team, coordinate work, and represent us at competitions.',
+        'Led the team during the season, organized workflow, and ensured strong communication.'
+      )">
+        <img src="img/sayan.jpg">
+        <h4>Sayan</h4>
+        <p>Captain</p>
+      </div>
+
+      <!-- 2 -->
+      <div class="member" onclick="openModal(
+        'img/nuraly.jpg',
+        'Nuraly',
+        'I work on robot engineering and drive the robot during matches.',
+        'Helped assemble mechanisms and improved robot reliability.'
+      )">
+        <img src="img/nuraly.jpg">
+        <h4>Nuraly</h4>
+        <p>Engineer / Driver</p>
+      </div>
+
+      <!-- 3 -->
+      <div class="member" onclick="openModal(
+        'img/alikh.jpg',
+        'Alikh',
+        'I am responsible for CAD design and robot mechanics.',
+        'Designed robot structure, optimized mechanisms, and supported manufacturing.'
+      )">
+        <img src="img/alikh.jpg">
+        <h4>Alikh</h4>
+        <p>Lead CAD</p>
+      </div>
+
+      <!-- 4 -->
+      <div class="member" onclick="openModal(
+        'img/aldiyar.jpg',
+        'Aldiyar',
+        'I work as a human player and help with engineering tasks.',
+        'Supported the team during matches and assisted with robot testing.'
+      )">
+        <img src="img/aldiyar.jpg">
+        <h4>Aldiyar</h4>
+        <p>Human Player</p>
+      </div>
+
+      <!-- 5 -->
+      <div class="member" onclick="openModal(
+        'img/saida.jpg',
+        'Saida',
+        'I am responsible for outreach and design.',
+        'Created presentations, design materials, and helped with team branding.'
+      )">
+        <img src="img/saida.jpg">
+        <h4>Saida</h4>
+        <p>Outreach / Design</p>
+      </div>
+
+      <!-- 6 -->
+      <div class="member" onclick="openModal(
+        'img/muhammedali.jpg',
+        'Muhammedali',
+        'I work on electronics and basic programming.',
+        'Helped with wiring, sensors, and technical troubleshooting.'
+      )">
+        <img src="img/muhammedali.jpg">
+        <h4>Muhammedali</h4>
+        <p>Electronics</p>
+      </div>
+
+      <!-- 7 -->
+      <div class="member" onclick="openModal(
+        'img/nurbek.jpg',
+        'Nurbek',
+        'I assist with CAD and mechanical assembly.',
+        'Helped build robot parts and supported testing.'
+      )">
+        <img src="img/nurbek.jpg">
+        <h4>Nurbek</h4>
+        <p>CAD / Mechanical</p>
+      </div>
+
+      <!-- 8 -->
+      <div class="member" onclick="openModal(
+        'img/rabiya.jpg',
+        'Rabiya',
+        'I help with engineering documentation and teamwork.',
+        'Worked on documentation and supported team organization.'
+      )">
+        <img src="img/rabiya.jpg">
+        <h4>Rabiya</h4>
+        <p>Engineer</p>
+      </div>
+
+    </div>
+
+    <button class="arrow right" onclick="scrollTeam(1)">›</button>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="memberModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <img id="modalImg">
+    <h3 id="modalName"></h3>
+
+    <div class="chat">
+      <div class="bubble question">what do you do in the team?</div>
+      <div class="bubble answer" id="modalRole"></div>
+
+      <div class="bubble question">what have you achieved?</div>
+      <div class="bubble answer" id="modalAchieve"></div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
