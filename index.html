@@ -1,152 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Future Vortex | FTC 30326</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg2: #101840;
+      --accent: #1fb6c9;
+      --text: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(31,182,201,.15), transparent 40%),
+        linear-gradient(180deg, #050814, var(--bg));
+      color: var(--text);
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      background: var(--bg2);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 40px;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    h2 {
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    /* TEAM */
+    .team {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+    }
+
+    .team::-webkit-scrollbar {
+      display: none;
+    }
+
+    .member {
+      min-width: 180px;
+      background: var(--bg2);
+      border-radius: 16px;
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .member img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .member h4 {
+      margin: 8px 0 2px;
+      color: var(--accent);
+    }
+
+    /* MODAL */
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: var(--bg2);
+      padding: 20px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .chat {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .bubble {
+      padding: 10px 14px;
+      border-radius: 16px;
+      max-width: 80%;
+    }
+
+    .question {
+      background: #333;
+      align-self: flex-start;
+    }
+
+    .answer {
+      background: var(--accent);
+      color: #000;
+      align-self: flex-end;
+    }
+
+    .close {
+      float: right;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    footer {
+      background: var(--bg2);
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
   <div class="logo">
     <img src="img/logo.png">
     <div>
-      <h1>Future Vortex</h1>
-      <span>FTC Team 30326</span>
+      <strong>Future Vortex</strong><br>
+      <small>FTC Team 30326</small>
     </div>
   </div>
 
-  <button onclick="toggleTheme()">🌙 / ☀️</button>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#robot">Robot</a>
+    <a href="#team">Team</a>
+    <a href="#contacts">Contacts</a>
+  </nav>
 </header>
 
+<!-- ABOUT -->
+<section id="about">
+  <h2>About the Team</h2>
+  <p>
+    Future Vortex is an FTC team from Almaty, Kazakhstan.
+    We are a team of 8 students united by engineering, innovation,
+    and teamwork. Our goal is to create competitive robots and
+    grow as future engineers and leaders.
+  </p>
+</section>
+
+<!-- ROBOT -->
+<section id="robot">
+  <h2>Robot — IMPULSE</h2>
+  <p>
+    IMPULSE is our competition robot designed for speed, precision,
+    and reliability. It features a compact intake, accurate shooter,
+    and a lightweight CAD-optimized structure.
+  </p>
+</section>
+
+<!-- TEAM -->
 <section id="team">
   <h2>Our Team</h2>
 
-  <div class="team-carousel">
-    <button class="arrow left" onclick="scrollTeam(-1)">‹</button>
+  <div class="team">
 
-    <div class="team-track" id="teamTrack">
-
-      <!-- 1 -->
-      <div class="member" onclick="openModal(
-        'img/sayan.jpg',
-        'Sayan',
-        'I am the team captain. I manage the team, coordinate work, and represent us at competitions.',
-        'Led the team during the season, organized workflow, and ensured strong communication.'
-      )">
-        <img src="img/sayan.jpg">
-        <h4>Sayan</h4>
-        <p>Captain</p>
-      </div>
-
-      <!-- 2 -->
-      <div class="member" onclick="openModal(
-        'img/nuraly.jpg',
-        'Nuraly',
-        'I work on robot engineering and drive the robot during matches.',
-        'Helped assemble mechanisms and improved robot reliability.'
-      )">
-        <img src="img/nuraly.jpg">
-        <h4>Nuraly</h4>
-        <p>Engineer / Driver</p>
-      </div>
-
-      <!-- 3 -->
-      <div class="member" onclick="openModal(
-        'img/alikh.jpg',
-        'Alikh',
-        'I am responsible for CAD design and robot mechanics.',
-        'Designed robot structure, optimized mechanisms, and supported manufacturing.'
-      )">
-        <img src="img/alikh.jpg">
-        <h4>Alikh</h4>
-        <p>Lead CAD</p>
-      </div>
-
-      <!-- 4 -->
-      <div class="member" onclick="openModal(
-        'img/aldiyar.jpg',
-        'Aldiyar',
-        'I work as a human player and help with engineering tasks.',
-        'Supported the team during matches and assisted with robot testing.'
-      )">
-        <img src="img/aldiyar.jpg">
-        <h4>Aldiyar</h4>
-        <p>Human Player</p>
-      </div>
-
-      <!-- 5 -->
-      <div class="member" onclick="openModal(
-        'img/saida.jpg',
-        'Saida',
-        'I am responsible for outreach and design.',
-        'Created presentations, design materials, and helped with team branding.'
-      )">
-        <img src="img/saida.jpg">
-        <h4>Saida</h4>
-        <p>Outreach / Design</p>
-      </div>
-
-      <!-- 6 -->
-      <div class="member" onclick="openModal(
-        'img/muhammedali.jpg',
-        'Muhammedali',
-        'I work on electronics and basic programming.',
-        'Helped with wiring, sensors, and technical troubleshooting.'
-      )">
-        <img src="img/muhammedali.jpg">
-        <h4>Muhammedali</h4>
-        <p>Electronics</p>
-      </div>
-
-      <!-- 7 -->
-      <div class="member" onclick="openModal(
-        'img/nurbek.jpg',
-        'Nurbek',
-        'I assist with CAD and mechanical assembly.',
-        'Helped build robot parts and supported testing.'
-      )">
-        <img src="img/nurbek.jpg">
-        <h4>Nurbek</h4>
-        <p>CAD / Mechanical</p>
-      </div>
-
-      <!-- 8 -->
-      <div class="member" onclick="openModal(
-        'img/rabiya.jpg',
-        'Rabiya',
-        'I help with engineering documentation and teamwork.',
-        'Worked on documentation and supported team organization.'
-      )">
-        <img src="img/rabiya.jpg">
-        <h4>Rabiya</h4>
-        <p>Engineer</p>
-      </div>
-
+    <div class="member" onclick="openModal(
+      'img/sayan.png',
+      'Captain',
+      'I manage the team and coordinate all activities.'
+    )">
+      <img src="img/sayan.png">
+      <h4>Sayan</h4>
+      <p>Captain</p>
     </div>
 
-    <button class="arrow right" onclick="scrollTeam(1)">›</button>
+    <div class="member" onclick="openModal(
+      'img/nurali.png',
+      'Engineer / Driver',
+      'I build mechanisms and drive the robot in matches.'
+    )">
+      <img src="img/nurali.png">
+      <h4>Nurali</h4>
+      <p>Engineer / Driver</p>
+    </div>
+
+    <div class="member" onclick="openModal(
+      'img/alikh.png',
+      'Lead CAD',
+      'I design the robot structure and mechanisms.'
+    )">
+      <img src="img/alikh.png">
+      <h4>Alikh</h4>
+      <p>Lead CAD</p>
+    </div>
+
+    <div class="member" onclick="openModal(
+      'img/aldiyar.png',
+      'Human Player',
+      'I support the team during matches.'
+    )">
+      <img src="img/aldiyar.png">
+      <h4>Aldiyar</h4>
+      <p>Human Player</p>
+    </div>
+
+    <div class="member" onclick="openModal(
+      'img/saida.jpeg',
+      'Outreach & Design',
+      'I work on presentations and team branding.'
+    )">
+      <img src="img/saida.jpeg">
+      <h4>Saida</h4>
+      <p>Outreach / Design</p>
+    </div>
+
+    <div class="member" onclick="openModal(
+      'img/muhammedali.png',
+      'Electronics',
+      'I work on wiring and sensors.'
+    )">
+      <img src="img/muhammedali.png">
+      <h4>Muhammedali</h4>
+      <p>Electronics</p>
+    </div>
+
+    <div class="member" onclick="openModal(
+      'img/nurbek.png',
+      'CAD / Mechanical',
+      'I help with CAD and assembly.'
+    )">
+      <img src="img/nurbek.png">
+      <h4>Nurbek</h4>
+      <p>CAD / Mechanical</p>
+    </div>
+
+    <div class="member" onclick="openModal(
+      'img/rabiya.png',
+      'Engineer',
+      'I work on documentation and teamwork.'
+    )">
+      <img src="img/rabiya.png">
+      <h4>Rabiya</h4>
+      <p>Engineer</p>
+    </div>
+
   </div>
 </section>
 
+<!-- CONTACTS -->
+<section id="contacts">
+  <h2>Contacts</h2>
+  <p>
+    📸 Instagram:
+    <a href="https://www.instagram.com/future._vortexftckz/" target="_blank">
+      future._vortexftckz
+    </a>
+  </p>
+  <p>
+    ▶️ YouTube:
+    <a href="https://www.youtube.com/@fvftskz" target="_blank">
+      @fvftskz
+    </a>
+  </p>
+</section>
+
+<footer>
+  © Future Vortex — FTC 30326
+</footer>
+
 <!-- MODAL -->
-<div class="modal" id="memberModal">
+<div class="modal" id="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">×</span>
-    <img id="modalImg">
-    <h3 id="modalName"></h3>
-
+    <img id="mImg" style="width:100%;border-radius:12px;">
     <div class="chat">
-      <div class="bubble question">what do you do in the team?</div>
-      <div class="bubble answer" id="modalRole"></div>
-
-      <div class="bubble question">what have you achieved?</div>
-      <div class="bubble answer" id="modalAchieve"></div>
+      <div class="bubble question">What do you do in the team?</div>
+      <div class="bubble answer" id="mText"></div>
     </div>
   </div>
 </div>
 
-<script src="script.js"></script>
+<script>
+  function openModal(img, role, text) {
+    document.getElementById("mImg").src = img;
+    document.getElementById("mText").innerText = text;
+    document.getElementById("modal").style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("modal").style.display = "none";
+  }
+</script>
+
 </body>
 </html>
