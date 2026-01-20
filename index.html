@@ -6,155 +6,120 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-:root{
-  --bg:#050914;
-  --card:#0f244d;
-  --text:#e8f1ff;
-  --accent:#7fdcff;
+:root {
+  --bg:#050b18;
+  --card:#0e1b33;
+  --accent:#33d1ff;
+  --text:#eaf6ff;
 }
-body.light{
-  --bg:#ffffff;
-  --card:#f1f3f8;
-  --text:#0b1d3a;
-  --accent:#005b9f;
+body.light {
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --accent:#0066ff;
+  --text:#0a0a0a;
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{box-sizing:border-box}
 body{
-  font-family:Segoe UI,Arial,sans-serif;
+  margin:0;
+  font-family:Inter,Segoe UI,Arial;
   background:var(--bg);
   color:var(--text);
-  transition:.4s;
-  line-height:1.75;
+  scroll-behavior:smooth;
 }
 
-/* NAV */
 nav{
   position:fixed;
   top:0;
   width:100%;
-  padding:14px 40px;
+  background:linear-gradient(90deg,#08142c,#0a1f3f);
+  padding:15px 30px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background:rgba(0,0,0,.7);
-  backdrop-filter:blur(12px);
-  z-index:1000
+  z-index:100;
 }
-nav img{height:36px}
 nav a{
   color:var(--accent);
-  margin-left:18px;
+  margin:0 15px;
   text-decoration:none;
-  font-weight:600
+  font-weight:600;
 }
-.controls button{
-  margin-left:10px;
-  padding:6px 10px;
-  border-radius:10px;
-  border:1px solid var(--accent);
-  background:none;
-  color:var(--accent);
-  cursor:pointer
+.toggle{
+  cursor:pointer;
+  padding:6px 12px;
+  border-radius:20px;
+  background:var(--card);
 }
 
-/* HERO */
+section{
+  padding:120px 10%;
+  animation:fadeUp 1s ease forwards;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:none}
+}
+
 .hero{
   min-height:100vh;
-  display:flex;
-  align-items:center;
-  gap:60px;
-  padding:140px 8% 80px
-}
-.hero h1{
-  font-size:52px;
-  color:var(--accent);
-  margin-bottom:24px
-}
-.hero p{font-size:18px;max-width:620px}
-.hero img{
-  max-width:620px;
-  width:100%;
-  border-radius:28px;
-  box-shadow:0 0 50px rgba(0,0,0,.4)
+  background:
+    linear-gradient(120deg,rgba(0,0,0,.6),rgba(0,0,0,.9)),
+    url("img/award_stage.jpg") center/cover;
 }
 
-/* SECTIONS */
-section{
-  padding:120px 8% 100px;
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s
-}
-section.visible{opacity:1;transform:none}
-h2{
-  font-size:38px;
-  color:var(--accent);
-  margin-bottom:26px
-}
-h3{
-  margin-top:30px;
-  color:var(--accent)
-}
-p{max-width:1000px;margin-bottom:16px}
+h1{font-size:3em;margin-bottom:20px}
+h2{font-size:2.2em;margin-bottom:20px;color:var(--accent)}
+p{line-height:1.8;font-size:1.05em}
 
-/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
-  margin-top:30px
+  gap:30px;
 }
 
-/* TEAM */
-.team{
-  display:flex;
-  gap:26px;
-  overflow-x:auto
-}
-.member{
-  min-width:220px;
+.card{
   background:var(--card);
+  padding:25px;
   border-radius:20px;
-  padding:16px;
-  text-align:center
+  transition:.4s;
 }
-.member img{width:100%;border-radius:14px}
-.role{color:var(--accent);font-size:14px}
+.card:hover{transform:translateY(-8px)}
 
-/* GALLERY */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:20px;
-  margin-top:30px
-}
-.gallery img{
+.team img{
   width:100%;
-  border-radius:18px
+  border-radius:15px;
 }
 
-/* MODAL */
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.85);
-  display:none;
-  align-items:center;
-  justify-content:center
+.dialog{
+  margin-top:15px;
+  background:rgba(0,0,0,.25);
+  padding:15px;
+  border-radius:12px;
+  opacity:0;
+  animation:dialogIn 1s forwards;
 }
-.modal-box{
-  background:var(--card);
-  padding:28px;
-  border-radius:24px;
-  max-width:600px
+@keyframes dialogIn{
+  to{opacity:1}
+}
+
+.robot img{
+  width:100%;
+  border-radius:20px;
+}
+
+.timeline{
+  border-left:3px solid var(--accent);
+  padding-left:30px;
+}
+.timeline div{
+  margin-bottom:40px;
 }
 
 footer{
   text-align:center;
-  padding:50px;
-  color:var(--accent)
+  padding:40px;
+  opacity:.7;
 }
 </style>
 </head>
@@ -162,171 +127,179 @@ footer{
 <body>
 
 <nav>
-  <img src="img/logo.png">
+  <div><b>Future Vortex</b> · FTC 30326</div>
   <div>
     <a href="#about">About</a>
     <a href="#robot">Robot</a>
-    <a href="#competitions">Competitions</a>
     <a href="#team">Team</a>
-  </div>
-  <div class="controls">
-    <button onclick="toggleTheme()">🌗</button>
+    <a href="#competitions">Competitions</a>
+    <span class="toggle" onclick="toggleTheme()">🌓</span>
   </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div>
-    <h1>Future Vortex — FTC Team 30326</h1>
-    <p>
-      Future Vortex is a FIRST Tech Challenge team from Comfortable School No. 97 in Almaty.
-      Our team was created by students who wanted more than just to participate in competitions —
-      we wanted to understand engineering deeply, experience real teamwork, and grow through
-      challenges that mirror real-world engineering problems.
-    </p>
-  </div>
-  <img src="img/comp_alliance.jpg.jpeg">
-</div>
-
-<section id="about">
-<h2>About Us & Our Origins</h2>
-
+<section class="hero" id="about">
+<h1>Future Vortex — FTC Team 30326</h1>
 <p>
-Future Vortex is a robotics team based at Comfortable School No. 97 in Almaty.
-Our journey began in 2025 at the FGC competition, where students with different
-backgrounds and skill levels came together for a single purpose — to build robots
-and grow as engineers. At that moment, we were not experts. We lacked experience,
-confidence, and deep technical knowledge, but we had motivation and curiosity.
+Future Vortex is a FIRST Tech Challenge team from Comfortable School No.97 in Almaty, Kazakhstan.
+Our journey began at the FGC 2025 competition, where a group of students united with one clear purpose:
+to build robots, learn engineering through real challenges, and grow into a true competitive team.
+From the very beginning, we focused not only on results, but on understanding why systems fail,
+how designs evolve, and how teamwork transforms individual skills into collective strength.
 </p>
 
 <p>
-After FGC 2025, our team decided to continue in the FIRST Tech Challenge.
-FTC introduced us to a new level of engineering complexity: tighter tolerances,
-higher competition, and a stronger emphasis on documentation, strategy,
-and continuous improvement. Each member had to take responsibility for learning,
-teaching others, and contributing to the team.
+After FGC, we entered the FIRST Tech Challenge ecosystem, where the level of engineering,
+strategic thinking, and responsibility increased dramatically. Each competition forced us
+to analyze our mistakes, redesign mechanisms, rewrite code, and improve communication inside
+the team. Mechanical breakdowns, unstable shooting, and inconsistent performance were not setbacks —
+they became lessons that shaped our final robot and mindset.
 </p>
 
 <p>
-Today, Future Vortex is more than just a robotics team.
-It is a community of young innovators who believe that technology can change the world.
-We learn not only how to build robots, but also how to communicate,
-analyze failures, manage time, and lead under pressure.
-Our goal is simple but ambitious: to grow, create, and inspire.
+Today, Future Vortex is more than a robotics team. It is a community of young engineers,
+designers, programmers, and leaders who believe that technology is a tool for growth.
+Our goal is not only to win matches, but to inspire others, share knowledge,
+and prove that dedication and iteration lead to real progress.
 </p>
 
-<h3>Why the name “Future Vortex”?</h3>
-
+<h2>Why “Future Vortex”?</h2>
 <p>
-The name “Future Vortex” reflects our vision and energy.
-The word “Future” represents our focus on progress, innovation,
-and constant development. We always look ahead, searching for better solutions
-and new discoveries. The word “Vortex” symbolizes power, movement,
-and unstoppable energy. Just like a vortex, our team pulls ideas, creativity,
-and technology into a single powerful flow of growth.
+The name reflects our identity. “Future” represents our constant focus on development,
+innovation, and long-term vision. “Vortex” symbolizes energy, motion, and unstoppable momentum.
+We are a vortex of ideas, creativity, and engineering solutions, pulling challenges into
+a flow of growth and transformation.
 </p>
 </section>
 
 <section id="robot">
-<h2>Robot Engineering & Design Philosophy</h2>
-
+<h2>Robot Overview — IMPULSE</h2>
+<div class="grid robot">
+<div>
+<img src="img/robot_side.jpg">
+</div>
+<div>
 <p>
-Our robot is the physical result of months of engineering iteration,
-testing, and problem-solving. From the earliest design stages,
-we focused on reliability, simplicity, and adaptability.
-Rather than trying to build the most complex robot,
-we aimed to build a robot that performs consistently under competition pressure.
+Our robot, named <b>IMPULSE</b>, was designed with one core objective:
+to act quickly, precisely, and reliably in every match scenario.
+The concept of impulse in physics — the transfer of force that sets an object into motion —
+perfectly represents our design philosophy.
 </p>
 
 <p>
-During early competitions, we faced mechanical failures,
-inconsistent performance, and limitations in durability.
-Instead of ignoring these problems, we treated each failure as data.
-We analyzed broken components, reviewed match footage,
-and redesigned mechanisms using CAD tools.
-Weight reduction, reinforcement of stress points,
-and improved cable management became key priorities.
+Throughout the season, we went through multiple iterations.
+Early designs suffered from inconsistent launching and mechanical complexity.
+By simplifying mechanisms, reducing weight, and switching to more stable systems,
+we achieved higher accuracy and reliability.
 </p>
 
 <p>
-Software also played a major role in our robot’s evolution.
-We improved control algorithms, refined driver assistance features,
-and optimized autonomous routines.
-Through repeated testing and tuning,
-we increased accuracy, reduced cycle time,
-and improved overall match consistency.
+IMPULSE features a catapult-based outtake powered by rubber bands,
+providing consistent launch force compared to unstable flywheel systems.
+The drivetrain is built on a GoBILDA chassis with mecanum wheels,
+allowing precise omni-directional movement and smooth control in both autonomous and tele-op.
 </p>
 
-<div class="gallery">
-  <img src="img/robot_side.jpg">
-  <img src="img/process_assembly.jpg">
+<p>
+Failures during early competitions taught us critical lessons in stress distribution,
+material choice, and system integration. Each redesign made the robot stronger,
+faster, and more competition-ready.
+</p>
+</div>
+</div>
+</section>
+
+<section id="team">
+<h2>Our Team</h2>
+<div class="grid team">
+
+<div class="card">
+<img src="img/sayan.png">
+<h3>Sayan — Captain</h3>
+<div class="dialog">“I coordinate the team, manage strategy, and lead alliance communication.”</div>
+</div>
+
+<div class="card">
+<img src="img/nurali.png">
+<h3>Nurali — Engineer / Driver</h3>
+<div class="dialog">“I focus on robot control, match driving, and mechanical reliability.”</div>
+</div>
+
+<div class="card">
+<img src="img/alikh.png">
+<h3>Alikh — Lead CAD</h3>
+<div class="dialog">“I design core mechanisms and ensure precise CAD integration.”</div>
+</div>
+
+<div class="card">
+<img src="img/aldiyar.png">
+<h3>Aldiyar — Human Player</h3>
+<div class="dialog">“I manage field interaction and match support roles.”</div>
+</div>
+
+<div class="card">
+<img src="img/saida.jpeg">
+<h3>Saida — Outreach & Design</h3>
+<div class="dialog">“I handle presentations, outreach, and visual identity.”</div>
+</div>
+
+<div class="card">
+<img src="img/muhammadali.png">
+<h3>Muhammadali — Electronics</h3>
+<div class="dialog">“I manage wiring, sensors, and electrical reliability.”</div>
+</div>
+
+<div class="card">
+<img src="img/nurbek.png">
+<h3>Nurbek — CAD / Mechanics</h3>
+<div class="dialog">“I assist with prototyping and structural optimization.”</div>
+</div>
+
 </div>
 </section>
 
 <section id="competitions">
-<h2>Competitions, Challenges & Growth</h2>
+<h2>Competitions & Growth</h2>
+<div class="timeline">
 
+<div>
+<h3>Bishkek FIRST Regional</h3>
 <p>
-Throughout the season, Future Vortex participated in multiple FTC competitions,
-each presenting unique challenges and learning opportunities.
-Every event tested our technical skills, teamwork, and ability to adapt quickly.
+At Bishkek, we faced high-level alliances and intense match pressure.
+Our strengths were drivetrain stability and alliance coordination.
+Weaknesses included early shooting inconsistency, which we addressed
+by adjusting launch angles and rubber tension.
 </p>
+</div>
 
-<h3>Bishkek Regional</h3>
+<div>
+<h3>Almaty FIRST Regional</h3>
 <p>
-At the Bishkek Regional, our team achieved the role of Winning Alliance Captain.
-This competition tested our endurance and leadership.
-Mechanical wear during playoffs forced us to perform rapid repairs and adjustments.
-We learned how to stay calm under pressure and support alliance partners effectively.
+This competition highlighted our growth. Improved autonomous routines,
+better communication, and mechanical reliability led to stronger results.
+Winning the Control Award validated our engineering decisions.
 </p>
+</div>
 
-<h3>Astana Regional</h3>
+<div>
+<h3>Daryn Qualifier</h3>
 <p>
-Astana Regional highlighted the importance of software stability.
-While our mechanical systems performed well,
-software inconsistencies affected match reliability.
-By analyzing logs and driver feedback,
-we refactored control logic and improved system robustness.
+Here, we focused on consistency. Although matches were demanding,
+our robot performed reliably, and we secured Innovate Award 2nd Place,
+proving our design evolution and documentation strength.
 </p>
+</div>
 
-<h3>Burabay & Almaty Regionals</h3>
-<p>
-These competitions emphasized strategy and consistency.
-Strong defensive opponents forced us to rethink our gameplay.
-Driver training, strategic planning, and communication improvements
-allowed us to remain competitive and adaptable.
-</p>
-</section>
-
-<section id="team">
-<h2>Our Team & Roles</h2>
-
-<p>
-Future Vortex is built on teamwork and trust.
-Each member plays a critical role in the success of the team,
-from leadership and design to outreach and testing.
-</p>
-
-<div class="team">
-  <div class="member"><img src="img/sayan.png"><b>Sayan</b><div class="role">Captain</div></div>
-  <div class="member"><img src="img/alikh.png"><b>Alikh</b><div class="role">Lead CAD</div></div>
-  <div class="member"><img src="img/nurali.png"><b>Nurali</b><div class="role">Driver</div></div>
-  <div class="member"><img src="img/aldiyar.png"><b>Aldiyar</b><div class="role">Human Player</div></div>
-  <div class="member"><img src="img/nurbek.png"><b>Nurbek</b><div class="role">Mechanical</div></div>
-  <div class="member"><img src="img/muhammedali.png"><b>Muhammedali</b><div class="role">Electronics</div></div>
-  <div class="member"><img src="img/rabiya.png"><b>Rabiya</b><div class="role">Engineering</div></div>
-  <div class="member"><img src="img/saida.jpeg"><b>Saida</b><div class="role">Outreach</div></div>
 </div>
 </section>
 
 <footer>
-Future Vortex © FTC Team 30326
+© Future Vortex FTC Team 30326 · Kazakhstan
 </footer>
 
 <script>
-const obs=new IntersectionObserver(e=>e.forEach(i=>i.isIntersecting&&i.target.classList.add("visible")));
-document.querySelectorAll("section").forEach(s=>obs.observe(s));
-function toggleTheme(){document.body.classList.toggle("light")}
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
 </script>
 
 </body>
