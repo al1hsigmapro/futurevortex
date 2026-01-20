@@ -13,8 +13,8 @@
   --accent:#7fdcff;
 }
 body.light{
-  --bg:#f5f7fb;
-  --card:#ffffff;
+  --bg:#ffffff;
+  --card:#f1f3f8;
   --text:#0b1d3a;
   --accent:#005b9f;
 }
@@ -26,6 +26,7 @@ body{
   background:var(--bg);
   color:var(--text);
   transition:.4s;
+  line-height:1.75;
 }
 
 /* NAV */
@@ -37,7 +38,7 @@ nav{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background:rgba(0,0,0,.6);
+  background:rgba(0,0,0,.7);
   backdrop-filter:blur(12px);
   z-index:1000
 }
@@ -66,48 +67,50 @@ nav a{
   gap:60px;
   padding:140px 8% 80px
 }
-.hero h1{font-size:52px;color:var(--accent);margin-bottom:20px}
-.hero p{font-size:18px;line-height:1.7;max-width:600px}
+.hero h1{
+  font-size:52px;
+  color:var(--accent);
+  margin-bottom:24px
+}
+.hero p{font-size:18px;max-width:620px}
 .hero img{
   max-width:620px;
   width:100%;
-  border-radius:26px;
+  border-radius:28px;
   box-shadow:0 0 50px rgba(0,0,0,.4)
 }
 
 /* SECTIONS */
 section{
-  padding:110px 8% 90px;
+  padding:120px 8% 100px;
   opacity:0;
   transform:translateY(40px);
   transition:1s
 }
 section.visible{opacity:1;transform:none}
-h2{font-size:34px;color:var(--accent);margin-bottom:18px}
-p{line-height:1.7;font-size:17px;max-width:900px}
+h2{
+  font-size:38px;
+  color:var(--accent);
+  margin-bottom:26px
+}
+h3{
+  margin-top:30px;
+  color:var(--accent)
+}
+p{max-width:1000px;margin-bottom:16px}
 
-/* CARDS */
+/* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
   margin-top:30px
-}
-.card{
-  background:var(--card);
-  border-radius:20px;
-  padding:20px;
-  transition:.4s
-}
-.card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 0 30px rgba(127,220,255,.25)
 }
 
 /* TEAM */
 .team{
   display:flex;
-  gap:24px;
+  gap:26px;
   overflow-x:auto
 }
 .member{
@@ -115,48 +118,44 @@ p{line-height:1.7;font-size:17px;max-width:900px}
   background:var(--card);
   border-radius:20px;
   padding:16px;
-  text-align:center;
-  cursor:pointer
+  text-align:center
 }
 .member img{width:100%;border-radius:14px}
 .role{color:var(--accent);font-size:14px}
 
-/* GRAPH */
-.bar{
-  height:14px;
-  background:#1b2f52;
-  border-radius:10px;
-  overflow:hidden;
-  margin:8px 0
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+  margin-top:30px
 }
-.fill{
-  height:100%;
-  background:var(--accent);
-  width:0;
-  animation:grow 2s forwards
+.gallery img{
+  width:100%;
+  border-radius:18px
 }
-@keyframes grow{to{width:var(--w)}}
 
 /* MODAL */
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.8);
+  background:rgba(0,0,0,.85);
   display:none;
   align-items:center;
   justify-content:center
 }
 .modal-box{
   background:var(--card);
-  padding:26px;
-  border-radius:22px;
-  max-width:520px
+  padding:28px;
+  border-radius:24px;
+  max-width:600px
 }
-.dialog p{opacity:0;animation:fade .7s forwards}
-.dialog p:nth-child(2){animation-delay:.6s}
-@keyframes fade{to{opacity:1}}
 
-footer{text-align:center;padding:40px;color:var(--accent)}
+footer{
+  text-align:center;
+  padding:50px;
+  color:var(--accent)
+}
 </style>
 </head>
 
@@ -166,145 +165,157 @@ footer{text-align:center;padding:40px;color:var(--accent)}
   <img src="img/logo.png">
   <div>
     <a href="#about">About</a>
+    <a href="#robot">Robot</a>
     <a href="#competitions">Competitions</a>
     <a href="#team">Team</a>
-    <a href="#stats">Stats</a>
   </div>
   <div class="controls">
     <button onclick="toggleTheme()">🌗</button>
-    <button onclick="setLang('en')">EN</button>
-    <button onclick="setLang('ru')">RU</button>
-    <button onclick="setLang('kz')">KZ</button>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
   <div>
-    <h1 data-en="Future Vortex — FTC Team 30326"
-        data-ru="Future Vortex — FTC Команда 30326"
-        data-kz="Future Vortex — FTC 30326 командасы"></h1>
-
-    <p data-en="Future Vortex is a FIRST Tech Challenge team from Comfortable School No. 97 in Almaty. Our journey began at the FGC 2025 competition, where we united to create innovative robots and grow as engineers."
-       data-ru="Future Vortex — команда FIRST Tech Challenge из школы Comfortable School №97 в Алматы. Наш путь начался на соревнованиях FGC 2025."
-       data-kz="Future Vortex — Алматы қаласындағы Comfortable School №97 мектебінің FIRST Tech Challenge командасы. Біздің жолымыз FGC 2025 жарысында басталды."></p>
+    <h1>Future Vortex — FTC Team 30326</h1>
+    <p>
+      Future Vortex is a FIRST Tech Challenge team from Comfortable School No. 97 in Almaty.
+      Our team was created by students who wanted more than just to participate in competitions —
+      we wanted to understand engineering deeply, experience real teamwork, and grow through
+      challenges that mirror real-world engineering problems.
+    </p>
   </div>
   <img src="img/comp_alliance.jpg.jpeg">
 </div>
 
 <section id="about">
-<h2 data-en="Who We Are"
-    data-ru="Кто мы"
-    data-kz="Біз кімбіз"></h2>
+<h2>About Us & Our Origins</h2>
 
-<p data-en="After FGC 2025 we continued in FTC, showing determination, teamwork, and creativity. Today Future Vortex is more than a robotics team — it is a community of young innovators. Our goal: to grow, create, and inspire."
-   data-ru="После FGC 2025 мы продолжили путь в FTC, показывая упорство, командную работу и креативность. Наша цель — расти, создавать и вдохновлять."
-   data-kz="FGC 2025-тен кейін біз FTC жарыстарына қатысып, табандылық пен командалық рух көрсеттік. Біздің мақсатымыз — өсу, жасау және шабыттандыру."></p>
+<p>
+Future Vortex is a robotics team based at Comfortable School No. 97 in Almaty.
+Our journey began in 2025 at the FGC competition, where students with different
+backgrounds and skill levels came together for a single purpose — to build robots
+and grow as engineers. At that moment, we were not experts. We lacked experience,
+confidence, and deep technical knowledge, but we had motivation and curiosity.
+</p>
 
-<h2 data-en="Why the name “Future Vortex”?"
-    data-ru="Почему название «Future Vortex»?"
-    data-kz="Неге «Future Vortex»?"></h2>
+<p>
+After FGC 2025, our team decided to continue in the FIRST Tech Challenge.
+FTC introduced us to a new level of engineering complexity: tighter tolerances,
+higher competition, and a stronger emphasis on documentation, strategy,
+and continuous improvement. Each member had to take responsibility for learning,
+teaching others, and contributing to the team.
+</p>
 
-<p data-en="Future represents progress and vision. Vortex symbolizes power, movement, and unstoppable energy. We are a vortex of ideas, creativity, and innovation."
-   data-ru="Future — это взгляд в будущее. Vortex — символ энергии и движения. Мы — вихрь идей и инноваций."
-   data-kz="Future — болашаққа ұмтылу. Vortex — қуат пен қозғалыс белгісі. Біз идеялар мен инновациялардың ағынымыз."></p>
+<p>
+Today, Future Vortex is more than just a robotics team.
+It is a community of young innovators who believe that technology can change the world.
+We learn not only how to build robots, but also how to communicate,
+analyze failures, manage time, and lead under pressure.
+Our goal is simple but ambitious: to grow, create, and inspire.
+</p>
+
+<h3>Why the name “Future Vortex”?</h3>
+
+<p>
+The name “Future Vortex” reflects our vision and energy.
+The word “Future” represents our focus on progress, innovation,
+and constant development. We always look ahead, searching for better solutions
+and new discoveries. The word “Vortex” symbolizes power, movement,
+and unstoppable energy. Just like a vortex, our team pulls ideas, creativity,
+and technology into a single powerful flow of growth.
+</p>
+</section>
+
+<section id="robot">
+<h2>Robot Engineering & Design Philosophy</h2>
+
+<p>
+Our robot is the physical result of months of engineering iteration,
+testing, and problem-solving. From the earliest design stages,
+we focused on reliability, simplicity, and adaptability.
+Rather than trying to build the most complex robot,
+we aimed to build a robot that performs consistently under competition pressure.
+</p>
+
+<p>
+During early competitions, we faced mechanical failures,
+inconsistent performance, and limitations in durability.
+Instead of ignoring these problems, we treated each failure as data.
+We analyzed broken components, reviewed match footage,
+and redesigned mechanisms using CAD tools.
+Weight reduction, reinforcement of stress points,
+and improved cable management became key priorities.
+</p>
+
+<p>
+Software also played a major role in our robot’s evolution.
+We improved control algorithms, refined driver assistance features,
+and optimized autonomous routines.
+Through repeated testing and tuning,
+we increased accuracy, reduced cycle time,
+and improved overall match consistency.
+</p>
+
+<div class="gallery">
+  <img src="img/robot_side.jpg">
+  <img src="img/process_assembly.jpg">
+</div>
 </section>
 
 <section id="competitions">
-<h2>Competitions & Challenges</h2>
+<h2>Competitions, Challenges & Growth</h2>
 
-<div class="grid">
-<div class="card">
+<p>
+Throughout the season, Future Vortex participated in multiple FTC competitions,
+each presenting unique challenges and learning opportunities.
+Every event tested our technical skills, teamwork, and ability to adapt quickly.
+</p>
+
 <h3>Bishkek Regional</h3>
-<p><b>Awards:</b> Winning Alliance Captain</p>
-<p><b>Challenges:</b> Mechanical wear in playoffs</p>
-<p><b>Solution:</b> Reinforced structure and faster maintenance</p>
-</div>
+<p>
+At the Bishkek Regional, our team achieved the role of Winning Alliance Captain.
+This competition tested our endurance and leadership.
+Mechanical wear during playoffs forced us to perform rapid repairs and adjustments.
+We learned how to stay calm under pressure and support alliance partners effectively.
+</p>
 
-<div class="card">
 <h3>Astana Regional</h3>
-<p><b>Awards:</b> Innovate Award</p>
-<p><b>Challenges:</b> Software instability</p>
-<p><b>Solution:</b> PID tuning and refactoring</p>
-</div>
+<p>
+Astana Regional highlighted the importance of software stability.
+While our mechanical systems performed well,
+software inconsistencies affected match reliability.
+By analyzing logs and driver feedback,
+we refactored control logic and improved system robustness.
+</p>
 
-<div class="card">
-<h3>Burabay Regional</h3>
-<p><b>Awards:</b> Innovate Award</p>
-<p><b>Challenges:</b> Defense pressure</p>
-<p><b>Solution:</b> Driver training and strategy</p>
-</div>
-
-<div class="card">
-<h3>Almaty Regional</h3>
-<p><b>Awards:</b> Control Award</p>
-<p><b>Challenges:</b> Consistency</p>
-<p><b>Solution:</b> Cycle optimization</p>
-</div>
-
-<div class="card">
-<h3>Daryn Qualifier</h3>
-<p><b>Awards:</b> Innovate Award 2nd Place</p>
-<p><b>Growth:</b> Alliance communication</p>
-</div>
-
-<div class="card">
-<h3>Ontustik Qualifier</h3>
-<p><b>Awards:</b> Think Award Winner</p>
-<p><b>Growth:</b> Strategic analysis</p>
-</div>
-</div>
-</section>
-
-<section id="stats">
-<h2>Season Progress</h2>
-
-<p>Reliability</p>
-<div class="bar"><div class="fill" style="--w:85%"></div></div>
-
-<p>Cycle Speed</p>
-<div class="bar"><div class="fill" style="--w:78%"></div></div>
-
-<p>Alliance Performance</p>
-<div class="bar"><div class="fill" style="--w:92%"></div></div>
+<h3>Burabay & Almaty Regionals</h3>
+<p>
+These competitions emphasized strategy and consistency.
+Strong defensive opponents forced us to rethink our gameplay.
+Driver training, strategic planning, and communication improvements
+allowed us to remain competitive and adaptable.
+</p>
 </section>
 
 <section id="team">
-<h2>Our Team</h2>
+<h2>Our Team & Roles</h2>
+
+<p>
+Future Vortex is built on teamwork and trust.
+Each member plays a critical role in the success of the team,
+from leadership and design to outreach and testing.
+</p>
+
 <div class="team">
-
-<div class="member" onclick="openDialog('Sayan','Captain','Led strategy and alliance communication.')">
-<img src="img/sayan.png"><b>Sayan</b><div class="role">Captain</div>
-</div>
-
-<div class="member" onclick="openDialog('Alikh','Lead CAD','Designed and iterated robot mechanisms.')">
-<img src="img/alikh.png"><b>Alikh</b><div class="role">Lead CAD</div>
-</div>
-
-<div class="member" onclick="openDialog('Nurali','Driver','Match driving and mechanisms.')">
-<img src="img/nurali.png"><b>Nurali</b><div class="role">Driver</div>
-</div>
-
-<div class="member" onclick="openDialog('Aldiyar','Human Player','Game element control.')">
-<img src="img/aldiyar.png"><b>Aldiyar</b><div class="role">Human Player</div>
-</div>
-
-<div class="member" onclick="openDialog('Nurbek','Mechanical','Assembly and support.')">
-<img src="img/nurbek.png"><b>Nurbek</b><div class="role">Mechanical</div>
-</div>
-
-<div class="member" onclick="openDialog('Muhammedali','Electronics','Wiring and diagnostics.')">
-<img src="img/muhammedali.png"><b>Muhammedali</b><div class="role">Electronics</div>
-</div>
-
-<div class="member" onclick="openDialog('Rabiya','Engineering','Testing and documentation.')">
-<img src="img/rabiya.png"><b>Rabiya</b><div class="role">Engineering</div>
-</div>
-
-<div class="member" onclick="openDialog('Saida','Outreach','Workshops and public outreach.')">
-<img src="img/saida.jpeg"><b>Saida</b><div class="role">Outreach</div>
-</div>
-
+  <div class="member"><img src="img/sayan.png"><b>Sayan</b><div class="role">Captain</div></div>
+  <div class="member"><img src="img/alikh.png"><b>Alikh</b><div class="role">Lead CAD</div></div>
+  <div class="member"><img src="img/nurali.png"><b>Nurali</b><div class="role">Driver</div></div>
+  <div class="member"><img src="img/aldiyar.png"><b>Aldiyar</b><div class="role">Human Player</div></div>
+  <div class="member"><img src="img/nurbek.png"><b>Nurbek</b><div class="role">Mechanical</div></div>
+  <div class="member"><img src="img/muhammedali.png"><b>Muhammedali</b><div class="role">Electronics</div></div>
+  <div class="member"><img src="img/rabiya.png"><b>Rabiya</b><div class="role">Engineering</div></div>
+  <div class="member"><img src="img/saida.jpeg"><b>Saida</b><div class="role">Outreach</div></div>
 </div>
 </section>
 
@@ -312,30 +323,10 @@ footer{text-align:center;padding:40px;color:var(--accent)}
 Future Vortex © FTC Team 30326
 </footer>
 
-<div class="modal" id="modal">
-<div class="modal-box">
-<div class="dialog" id="dialog"></div>
-</div>
-</div>
-
 <script>
 const obs=new IntersectionObserver(e=>e.forEach(i=>i.isIntersecting&&i.target.classList.add("visible")));
 document.querySelectorAll("section").forEach(s=>obs.observe(s));
-
-function openDialog(name,role,text){
-  document.getElementById("dialog").innerHTML=
-  `<p><b>Q:</b> What do you do in the team?</p>
-   <p><b>${name}:</b> ${text}</p>`;
-  document.getElementById("modal").style.display="flex";
-}
-document.getElementById("modal").onclick=()=>modal.style.display="none";
-
 function toggleTheme(){document.body.classList.toggle("light")}
-
-function setLang(l){
-  document.querySelectorAll("[data-"+l+"]").forEach(e=>e.innerText=e.dataset[l]);
-}
-setLang("en");
 </script>
 
 </body>
